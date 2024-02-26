@@ -1,0 +1,52 @@
+bowtie2_prefix = "gencode.v19"
+
+rule bowtie2_index:
+    input:
+        "genome/{reference}.fa"
+    output:
+        "{reference}.rev.1.bt2",
+        "{reference}.rev.2.bt2",
+        "{reference}.1.bt2",
+        "{reference}.2.bt2",
+        "{reference}.3.bt2",
+        "{reference}.4.bt2"
+    shell:
+        "bowtie2-build {input} {bowtie2_prefix}"
+
+rule bowtie2_alignment:
+    input:
+        "{reference}.rev.1.bt2",
+        "{reference}.rev.2.bt2",
+        "{reference}.1.bt2",
+        "{reference}.2.bt2",
+        "{reference}.3.bt2",
+        "{reference}.4.bt2",
+        fastq="/home/hiv_project_BI/users/iliap/bowtie2/test_samples/BGI/{sample}.fastq.gz"
+    output:
+        "{reference}.{sample}.aligned_reads.sam"
+    shell:
+        "bowtie2 -x {bowtie_prefix} -U {input.fastq} -S {output}"
+
+rule convert_sam_bam:
+    input:
+        "{reference}.{sample}.aligned_reads.sam"
+    output:
+        "{reference}.{sample}.aligned_reads.bam"
+    shell:
+        "samtools view -b -S {input} > {output}"
+
+rule bam_sort:
+    input:
+        rules.bowtie2_align.output
+    output:
+        "{reference}.{sample}.sorted.bam"
+    shell:
+        "samtools sort {input} -o {output}"
+
+rule get_unmapped_reads:
+    input:
+        rules.bam_sort.output
+    output:
+        "{reference}.{sample}.unmapped.bam"
+    shell:
+        "samtools view -f4 {input} > {output}"
