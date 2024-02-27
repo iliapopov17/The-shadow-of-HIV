@@ -1,4 +1,5 @@
 # The-shadow-of-HIV
+Repository for course project in Bioinformatics Institute 2023-2024
 
 This repository contains two `Snakemake` files
 
