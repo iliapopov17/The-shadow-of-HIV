@@ -5,7 +5,7 @@
 
 # The shadow of HIV: searching for indirect signs of HIV infection in cell-free DNA samples
 
-**Author**  
+**Authors**  
 - Ilia Popov
 - Daria Nekrasova
 - Dorzhi Badmadashiev
