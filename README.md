@@ -1,18 +1,18 @@
-# The-shadow-of-HIV
-Repository for course project in Bioinformatics Institute 2023-2024
+![[logo-bi-18-7| width=10px]](https://user-images.githubusercontent.com/90496643/169656572-a93ad3c6-2e70-481a-b749-470e02f84e7e.svg#gh-dark-mode-only)
+![logo-bi-18-3](https://user-images.githubusercontent.com/90496643/169656574-08b10a55-abe4-401b-bdd2-c9518c4c4f38.svg#gh-light-mode-only)
 
-<div style='justify-content: center'>
-<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/Current_status.png" align='center', width="100%">
-</div>
+</br>
 
-_Current status of the study_
+# The shadow of HIV: searching for indirect signs of HIV infection in cell-free DNA samples
 
-This repository contains two `Snakemake` files
+**Author**  
+- Ilia Popov
+- Daria Nekrasova
+- Dorzhi Badmadashiev
 
-Both of them:
 
-1) Index the reference genome
-2) Align cfDNA to the indexed genome
-3) Extract unmapped reads
+**Supervisors**
+- Alisa Morshneva
+- Polina Kozyulina
 
-One script uses `bwa` algorithm, the other one uses `bowtie2`
+**THIS REPO IS CURRENTLY AT WORK**
