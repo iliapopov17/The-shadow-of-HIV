@@ -9,7 +9,7 @@ library(ggtext)
 ###### SPECIES ######
 #####################
 
-DAA_species <- read.csv("../MaAsLin2_results/species/all_results.tsv", sep = "")
+DAA_species <- read.csv("../MaAsLin2_results/species/significant_results.tsv", sep = "")
 
 DAA_species$diffabund <- "NO"
 DAA_species$diffabund[DAA_species$coef > 1 & DAA_species$qval < 0.05 & DAA_species$metadata == "HIV_status"] <- "NN_plus"
@@ -32,7 +32,7 @@ volcano_plot_genus <- ggplot(data = DAA_species, aes(x = coef, y = -log10(qval),
                   box.padding = 1,
                   point.padding = 0.5,
                   max.overlaps = 10,
-                  nudge_x = 0,
+                  nudge_x = 1.5,
                   nudge_y = 4,
                   force = 10) +
   scale_color_manual(name = NULL,

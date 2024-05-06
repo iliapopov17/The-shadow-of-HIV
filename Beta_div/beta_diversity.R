@@ -14,7 +14,7 @@ metadata <- read.table('../metadata.csv',
          status = fct_relevel(HIV_status, "positive",
                              "negative"))
 
-taxon_counts <- read.table('../counts/counts_species.csv', sep=',', comment='', head=T, row.names=1)
+taxon_counts <- read.table('../counts/counts_species_filtered.csv', sep=',', comment='', head=T, row.names=1)
 
 #####################
 ###### Bray №1 ######
@@ -24,7 +24,9 @@ bray <- avgdist(taxon_counts, dmethod="bray", sample=10)%>%
   as.matrix()%>%
   as_tibble(rownames = "sample_id")
 
+metadata <- subset(metadata, sample_id!="20220313_424")
 metadata <- subset(metadata, sample_id!="20220423_698")
+metadata <- subset(metadata, sample_id!="20220601_973")
 metadata <- subset(metadata, sample_id!="20220601_979")
 metadata <- subset(metadata, sample_id!="20220604_994")
 
@@ -93,7 +95,6 @@ pretty_pe_bray <- format(round(percent_explained_bray, digits =1), nsmall=1, tri
 labels_bray <- c(glue("PCo Axis 2 ({pretty_pe_bray[2]}%)"), 
                  glue("PCo Axis 3 ({pretty_pe_bray[3]}%)"))
 
-# Update ggplot call
 PCOA_bray_plot <- positions_bray %>%
   as_tibble(rownames = "sample_id") %>%
   dplyr::inner_join(., metadata, by="sample_id") %>%
@@ -198,8 +199,8 @@ PCOA_jaccard_plot <- positions_jaccard %>%
   ggplot(aes(x=pcoa2, y=pcoa3, color=status)) +
   geom_point() +
   labs(title="Jaccard similarity",
-       x=labels_bray[1],
-       y=labels_bray[2])+
+       x=labels_jaccard[1],
+       y=labels_jaccard[2])+
   scale_color_manual(name="HIV status", 
                      breaks=c("positive",
                               "negative"),
@@ -207,7 +208,7 @@ PCOA_jaccard_plot <- positions_jaccard %>%
                               "Negative"),
                      values=c("#0000FF", "#FF0000", "gray"))+
   stat_ellipse(show.legend=FALSE)+
-  annotate(geom='richtext', x=0.15, y=0.17, 
+  annotate(geom='richtext', x=0.25, y=0.16, 
            label= "PERMANOVA<br><i>p</i>-value<0.001", 
            size=4, fill = NA, label.color = NA)+
   theme_classic()+

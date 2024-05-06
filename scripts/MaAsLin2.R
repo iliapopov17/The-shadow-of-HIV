@@ -18,11 +18,11 @@ fit_data = Maaslin2(input_data     = counts,
                     input_metadata = metadata, 
                     min_prevalence = 0,
                     normalization  = "TSS",
-                    output         = args[4],
+                    output         = args[3],
                     analysis_method = "LM",
                     max_significance = 0.2,
                     correction = "BH",
                     plot_heatmap = TRUE,
                     plot_scatter = TRUE,
-                    fixed_effects  = c(args[3]))
+                    fixed_effects  = c("HIV_status"))
 

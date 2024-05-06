@@ -24,17 +24,20 @@ def analyze_organism(merged_df, organism_name):
     stats["mode"] = mode
 
     # Calculate burden for HIV positive and negative samples
-    burden_hiv_positive = merged_df.loc[
-        merged_df["HIV_status"] == "positive", organism_name
-    ].sum()
-    average_burden_hiv_positive = (
-        burden_hiv_positive / merged_df["HIV_status"].value_counts()["positive"]
+    hiv_positive_samples = merged_df[merged_df["HIV_status"] == "positive"]
+    hiv_negative_samples = merged_df[merged_df["HIV_status"] == "negative"]
+
+    burden_hiv_positive = hiv_positive_samples[organism_name].sum()
+    average_burden_hiv_positive = burden_hiv_positive / hiv_positive_samples.shape[0]
+    burden_hiv_negative = hiv_negative_samples[organism_name].sum()
+    average_burden_hiv_negative = burden_hiv_negative / hiv_negative_samples.shape[0]
+
+    # Count of samples with the organism in the HIV positive and negative groups
+    count_samples_with_organism_hiv_positive = (
+        hiv_positive_samples[organism_name].gt(0).sum()
     )
-    burden_hiv_negative = merged_df.loc[
-        merged_df["HIV_status"] == "negative", organism_name
-    ].sum()
-    average_burden_hiv_negative = (
-        burden_hiv_negative / merged_df["HIV_status"].value_counts()["negative"]
+    count_samples_with_organism_hiv_negative = (
+        hiv_negative_samples[organism_name].gt(0).sum()
     )
 
     return (
@@ -44,6 +47,8 @@ def analyze_organism(merged_df, organism_name):
         average_burden_hiv_positive,
         burden_hiv_negative,
         average_burden_hiv_negative,
+        count_samples_with_organism_hiv_positive,
+        count_samples_with_organism_hiv_negative,
     )
 
 
@@ -86,6 +91,8 @@ def main(counts_path, metadata_path, organism_name):
         average_burden_positive,
         total_burden_negative,
         average_burden_negative,
+        count_samples_with_organism_hiv_positive,
+        count_samples_with_organism_hiv_negative,
     ) = analyze_organism(merged_df, organism_name)
     print("Frequency of", organism_name, "by HIV Status:", frequency)
     print("Detailed Statistics for", organism_name, ":", stats)
@@ -103,6 +110,18 @@ def main(counts_path, metadata_path, organism_name):
         total_burden_negative,
     )
     print("Average Burden per HIV Negative Sample:", average_burden_negative)
+    print(
+        "Number of samples with",
+        organism_name,
+        "in HIV Positive group:",
+        count_samples_with_organism_hiv_positive,
+    )
+    print(
+        "Number of samples with",
+        organism_name,
+        "in HIV Negative group:",
+        count_samples_with_organism_hiv_negative,
+    )
     create_visualizations(merged_df, organism_name)
 
 

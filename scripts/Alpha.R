@@ -1,14 +1,17 @@
 #!/usr/bin/env Rscript
 args <- commandArgs(trailingOnly=TRUE)
 
+main_dir <- dirname(rstudioapi::getSourceEditorContext()$path) 
+setwd(main_dir)
+
 library(tidyverse)
 library(ggtext)
 library(patchwork)
 
 #Alpha
 
-Alpha <- read.csv("Alpha_div/alpha_div_cult.csv")
-metadata <- read.csv(args[1])
+Alpha <- read.csv("../Alpha_div/alpha_div_cult.csv")
+metadata <- read.csv("../metadata.csv")
 
 names(Alpha)[1] <- "sample_id"
 names(Alpha)[3] <- "chao1"
@@ -48,7 +51,7 @@ shannon <- Alpha %>%
         legend.key=element_blank()) + 
   theme(text = element_text(size = 14)) +
   annotate(geom="richtext", x=1.5, y=6, 
-           label= "M-W, <i>p</i>-value=8.75267e-08", size=4.5, label.color = NA)+
+           label= "M-W, <i>p</i>-value<0.001", size=4.5, label.color = NA)+
   theme(axis.title.x=element_blank(),
         legend.text = element_markdown())+
   labs(y= "Shannon index")
@@ -75,7 +78,7 @@ chao1 <- Alpha %>%
         legend.key=element_blank()) + 
   theme(text = element_text(size = 14)) +
   annotate(geom="richtext", x=1.5, y=650, 
-           label= "M-W, <i>p</i>-value=4.018595e-07", size=4.5, label.color = NA)+
+           label= "M-W, <i>p</i>-value<0.001", size=4.5, label.color = NA)+
   theme(axis.title.x=element_blank(),
         legend.text = element_markdown())+
   labs(y= "Chao1 index")
@@ -102,7 +105,7 @@ pielou <- Alpha %>%
         legend.key=element_blank()) + 
   theme(text = element_text(size = 14)) +
   annotate(geom="richtext", x=1.5, y=1.5, 
-           label= "M-W, <i>p</i>-value=0.0001291934", size=4.5, label.color = NA)+
+           label= "M-W, <i>p</i>-value<0.001", size=4.5, label.color = NA)+
   theme(axis.title.x=element_blank(),
         legend.text = element_markdown())+
   labs(y= "Pielou index")
