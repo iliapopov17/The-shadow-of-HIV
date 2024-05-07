@@ -16,3 +16,13 @@
 - Polina Kozyulina
 
 **THIS REPO IS CURRENTLY AT WORK**
+
+## Pipeline
+
+<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/pipeline-dark.png#gh-dark-mode-only" width="100%/">
+<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/pipeline.png#gh-light-mode-only" width="100%/">
+
+## Results
+
+<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/main-results-dark.png#gh-dark-mode-only" width="100%/">
+<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/main-results.png#gh-light-mode-only" width="100%/">
