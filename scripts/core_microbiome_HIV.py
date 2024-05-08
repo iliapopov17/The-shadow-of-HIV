@@ -45,7 +45,9 @@ def create_share_matrix(filtered_df_percentage):
 
     sorted_indices = np.argsort(matrix[:, 0])
     matrix_sorted = matrix[sorted_indices]
+    matrix_sorted = matrix_sorted[::-1]
     taxons_sorted = np.array(taxons)[sorted_indices]
+    taxons_sorted = taxons_sorted[::-1]
 
     return matrix_sorted, taxons_sorted
 
