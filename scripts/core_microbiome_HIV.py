@@ -43,19 +43,23 @@ def create_share_matrix(filtered_df_percentage):
             share_exceeding = (filtered_df_percentage[col] > share).mean()
             matrix[i, j] = share_exceeding
 
-    return matrix, taxons
+    sorted_indices = np.argsort(matrix[:, 0])
+    matrix_sorted = matrix[sorted_indices]
+    taxons_sorted = np.array(taxons)[sorted_indices]
+
+    return matrix_sorted, taxons_sorted
 
 
-def plot_heatmap(matrix, taxons, hiv_status):
+def plot_heatmap(matrix_sorted, taxons_sorted, hiv_status):
     samples_share_range = np.arange(0.1, 1.1, 0.1)
 
     plt.figure(figsize=(12, 8))
     heatmap = sns.heatmap(
-        matrix,
+        matrix_sorted,
         cmap="coolwarm",
         cbar_kws={"shrink": 0.5},
         xticklabels=[int(share * 100) for share in samples_share_range],
-        yticklabels=taxons,
+        yticklabels=taxons_sorted,
         square=True,
         annot=False,
         fmt=".3f",
@@ -63,7 +67,7 @@ def plot_heatmap(matrix, taxons, hiv_status):
         linecolor="white",
     )
     plt.xlabel("Microorganisms percentage")
-    plt.title(f"Core microbiome for {hiv_status}")
+    plt.title(f"Core microbiota for {hiv_status}")
 
     cbar = heatmap.collections[0].colorbar
     cbar.set_label("Prevalence")
