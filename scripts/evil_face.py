@@ -59,23 +59,40 @@ def create_visualizations(merged_df, organism_name):
     sns.histplot(merged_df[organism_name], kde=False, ax=axs[0, 0])
     axs[0, 0].set_title("Histogram of " + organism_name + " Counts")
 
-    # Boxplots for Organism Counts by HIV Status
-    sns.boxplot(x="HIV_status", y=organism_name, data=merged_df, ax=axs[0, 1])
-    axs[0, 1].set_title("Boxplot of " + organism_name + " by HIV Status")
+    # Boxplot of Organism Burden by HIV Status
+    sns.boxplot(
+        x="HIV_status",
+        y=organism_name,
+        data=merged_df,
+        palette={"positive": "#5799c6", "negative": "#e32619"},
+        ax=axs[0, 1],
+    )
+    axs[0, 1].set_title("Distribution of " + organism_name + " Burden by HIV Status")
 
-    # Bar Graphs of Total Burdens
-    burdens = [
-        merged_df.loc[merged_df["HIV_status"] == "positive", organism_name].sum(),
-        merged_df.loc[merged_df["HIV_status"] == "negative", organism_name].sum(),
+    # Total Burden plot
+    total_burden = merged_df.groupby("HIV_status")[organism_name].sum()
+    colors = [
+        "#5799c6" if status == "positive" else "#e32619"
+        for status in total_burden.index
     ]
-    axs[1, 0].bar(["HIV Positive", "HIV Negative"], burdens)
+    axs[1, 0].bar(total_burden.index, total_burden, color=colors)
     axs[1, 0].set_title("Total Burden of " + organism_name)
 
-    # Frequency Distribution Pie Chart
+    # Frequency plot as pie chart
     frequencies = merged_df[organism_name].gt(0).groupby(merged_df["HIV_status"]).mean()
-    axs[1, 1].pie(
-        frequencies, labels=frequencies.index, autopct="%1.1f%%", startangle=90
+    colors = [
+        "#5799c6" if status == "positive" else "#e32619" for status in frequencies.index
+    ]
+    patches, texts, autotexts = axs[1, 1].pie(
+        frequencies,
+        labels=frequencies.index,
+        autopct="%1.1f%%",
+        startangle=90,
+        colors=colors,
     )
+    for text in autotexts:
+        text.set_color("white")
+        text.set_fontweight("bold")
     axs[1, 1].set_title("Frequency Distribution of " + organism_name)
 
     plt.tight_layout()

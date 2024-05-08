@@ -1,8 +1,8 @@
 #!/usr/bin/env Rscript
 args <- commandArgs(trailingOnly=TRUE)
 
-main_dir <- dirname(rstudioapi::getSourceEditorContext()$path) 
-setwd(main_dir)
+#main_dir <- dirname(rstudioapi::getSourceEditorContext()$path) 
+#setwd(main_dir)
 
 library(tidyverse)
 library(ggtext)
@@ -10,8 +10,8 @@ library(patchwork)
 
 #Alpha
 
-Alpha <- read.csv("../Alpha_div/alpha_div_cult.csv")
-metadata <- read.csv("../metadata.csv")
+Alpha <- read.csv("Alpha_div/alpha_div_cult.csv")
+metadata <- read.csv(args[1])
 
 names(Alpha)[1] <- "sample_id"
 names(Alpha)[3] <- "chao1"
