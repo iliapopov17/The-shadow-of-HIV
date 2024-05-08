@@ -1,0 +1,58 @@
+workdir: "."
+
+(SAMPLES,) = glob_wildcards("/path/to/BGI/fastq-files/{sample}.fastq") #enter path to BGI fastq results
+
+
+rule all:
+    input: 
+        expand("kraken_report_BGI/{sample}_kraken_report.txt", sample=SAMPLES)
+
+rule bowtie2_alignment:
+    input:
+        fastq = "/path/to/BGI/fastq-files/{sample}.fastq", #enter path to BGI fastq results
+        genome = "/path/to/genome" #enter path to ref genome
+    output:
+        "bam_BGI/{sample}.bam"
+    shell:
+        "bowtie2 -x {input.genome} -U {input.fastq} -S {output}"
+
+
+rule samtools_sort_bgi:
+    input:
+        "bam_BGI/{sample}.bam"
+    output:
+        "sorted_bam_BGI/{sample}_sorted.bam"
+    shell:
+        "samtools sort -@ 4 -o {output} {input}"
+
+
+rule extract_unmapped_bgi:
+    input:
+        "sorted_bam_BGI/{sample}_sorted.bam"
+    output:
+        "unmapped_BGI/{sample}_unmapped.bam"
+    shell:
+        "samtools view -f4 {input} > {output}"
+
+
+rule bam_to_fastq_bgi:
+    input:
+        "unmapped_BGI/{sample}_unmapped.bam"
+    output:
+        "fastq_BGI/{sample}_unmapped.fastq"
+    shell:
+        "samtools fastq {input} > {output}"
+
+
+rule kraken:
+    input:
+        fastq="fastq_BGI/{sample}_unmapped.fastq",
+        db="/path/to/kraken2_db" #enter path to db
+    output:
+        report = "kraken_report_BGI/{sample}_kraken_report.txt",
+        out = "kraken_output_BGI/{sample}_kraken_output.txt"
+    shell:
+        """
+        kraken2 --db {input.db} --output {output.out} \
+        --report {output.report} --confidence 0.60 {input.fastq}
+        """

@@ -1,0 +1,46 @@
+workdir: "."
+
+(SAMPLES,) = glob_wildcards("/path/to/IonTorrent/bam-files/{sample}.bam") #enter path to IonTorrent bam-files
+
+rule all:
+    input: 
+        expand("kraken_report_Ion/{sample}_kraken_report.txt", sample=SAMPLES)
+
+rule samtools_sort:
+    input:
+        "/path/to/IonTorrent/bam-files/{sample}.bam" #enter path to IonTorrent bam-files
+    output:
+        "sorted_bam_Ion/{sample}_sorted.bam"
+    shell:
+        """
+        samtools sort -o {output} {input.bam_file}
+        """
+
+rule extract_unmapped:
+    input:
+        "sorted_bam_Ion/{sample}_sorted.bam"
+    output:
+        "unmapped_Ion/{sample}_unmapped.bam"
+    shell:
+        "samtools view -f 4 {input} > {output}"
+
+rule bam_to_fastq:
+    input:
+        "unmapped_Ion/{sample}_unmapped.bam"
+    output:
+        "fastq_Ion/{sample}_unmapped.fastq"
+    shell:
+        "samtools fastq {input} > {output}"
+
+rule kraken:
+    input:
+        fastq="fastq_Ion/{sample}_unmapped.fastq",
+        db="/path/to/kraken2_db" #enter path to db
+    output:
+        report = "kraken_report_Ion/{sample}_kraken_report.txt",
+        out = "kraken_output_Ion/{sample}_kraken_output.txt"
+    shell:
+        """
+        kraken2 --db {input.db} --output {output.out} \
+        --report {output.report} --confidence 0.60 {input.fastq}
+        """
