@@ -21,6 +21,7 @@
 
 - [Introduction](#introduction)
 - [Pipeline](#pipeline)
+  - [Overview](#overview) 
   - [Unmapped reads extraction](#unmapped-reads-extraction)
     - [IonTorrent samples](#iontorrent-samples)
     - [BGI samples](#bgi-samples)
@@ -28,6 +29,8 @@
   - [Creating residual virus and microbiome profiles of two datasets](#creating-residual-virus-and-microbiome-profiles-of-two-datasets)
   - [Finding the differences in exogenous DNA composition between HIV- and HIV+ NIPT samples](#finding-the-differences-in-exogenous-dna-composition-between-hiv--and-hiv-nipt-samples)
 - [Results](#results)
+  - [Overview](#overview-1)
+  - [Counts distribution](#counts-distribution)
   - [Differential abundance](#differential-abundance)
   - [Relative abundance](#relative-abundance)
   - [α-diversity](#α-diversity)
@@ -38,9 +41,15 @@
 
 ## Introduction
 
-[Написать сколько образцов было (IonTorrent и BGI / ВИЧ+ и ВИЧ-). Написать, какие ограничения исследования имеются - диагностика ВИЧ инфекции с помощью опросников. Написать, что часть работы была выполнена на сервере. Аналитическая часть работы описана в лабораторном журнале. Написать про разные среды для conda.]
+[Написать сколько образцов было (IonTorrent и BGI / ВИЧ+ и ВИЧ-). Написать, какие ограничения исследования имеются - диагностика ВИЧ инфекции с помощью опросников. Написать про экзотику данных. Написать, что часть работы была выполнена на сервере. Аналитическая часть работы описана в лабораторном журнале. Написать про разные среды для conda.]
 
 ## Pipeline
+
+### Overview
+
+[INSERT PICTURE]
+
+_Figure 1. The whole pipeline overview._
 
 ### Unmapped reads extraction
 
@@ -133,6 +142,7 @@ In addition, the following taxa were weeded out of the data:
 ### Finding the differences in exogenous DNA composition between HIV- and HIV+ NIPT samples
 
 To find the association between clinical metadata and microbial meta-omics features `MaAslin2 v.X.X.` was used.
+See [`scripts/MaAsLin2.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/MaAsLin2.R) script for details.
 
 <details><summary>
 <b>MaAsLin2 launch parameters:</b>
@@ -154,6 +164,22 @@ fit_data = Maaslin2(input_data     = counts,
 </details>
 
 ## Results
+
+### Overview
+
+[INSERT PICTURE]
+
+_Figure 2. Main results overview._
+
+### Counts distribution
+
+|Species|Genus|Family|Order|Class|Family|
+|-------|-----|------|-----|-----|------|
+|PIC1|PIC2|PIC3|PIC4|PIC5|PIC6|
+
+_Table 1. Counts distribution on every taxonomic level_
+
+It is clearly can be seen that the the distribution graph is shifted to the right in all cases.
 
 ### Differential abundance
 
