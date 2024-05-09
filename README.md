@@ -32,6 +32,7 @@
   - [Relative abundance](#relative-abundance)
   - [α-diversity](#α-diversity)
   - [β-diversity](#β-diversity)
+  - [Core microbiota](#core-microbiota)
   - [Overall](#overall)
 
 ## Introduction
@@ -130,7 +131,7 @@ In addition, the following taxa were weeded out of the data:
 
 ### Finding the differences in exogenous DNA composition between HIV- and HIV+ NIPT samples
 
-To find the association between clinical metadata and microbial meta-omics features `MaAslin2 v.X.X.` was used
+To find the association between clinical metadata and microbial meta-omics features `MaAslin2 v.X.X.` was used.
 
 <details><summary>
 <b>MaAsLin2 launch parameters:</b>
@@ -160,5 +161,7 @@ fit_data = Maaslin2(input_data     = counts,
 ### α-diversity
 
 ### β-diversity
+
+### Core microbiota
 
 ### Overall
