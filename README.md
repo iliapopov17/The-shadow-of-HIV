@@ -17,6 +17,44 @@
 
 **THIS REPO IS CURRENTLY AT WORK**
 
+## Table of contents
+
+- [Pipeline](#pipeline)
+  - [Unmapped reads extraction](#unmapped-reads-extraction)
+    - [IonTorrent samples](#iontorrent-samples)
+    - [BGI samples](#bgi-samples)
+  - [Assigning taxonomic labels](#assigning-taxonomic-labels)
+  - [Creating residual virus and microbiome profiles of two datasets](#creating-residual-virus-and-microbiome-profiles-of-two-datasets)
+  - [Finding the differences in exogenous DNA composition between HIV- and HIV+ NIPT samples](#finding-the-differences-in-exogenous-dna-composition-between-hiv--and-hiv-nipt-samples)
+- [Results](#results)
+  - [Differential abundance](#differential-abundance)
+  - [Relative abundance](#relative-abundance)
+  - [α-diversity](#α-diversity)
+  - [β-diversity](#β-diversity)
+  - [Overall](#overall)
+
 ## Pipeline
 
+### Unmapped reads extraction
+
+#### IonTorrent samples
+
+#### BGI samples
+
+### Assigning taxonomic labels
+
+### Creating residual virus and microbiome profiles of two datasets
+
+### Finding the differences in exogenous DNA composition between HIV- and HIV+ NIPT samples
+
 ## Results
+
+### Differential abundance
+
+### Relative abundance
+
+### α-diversity
+
+### β-diversity
+
+### Overall
