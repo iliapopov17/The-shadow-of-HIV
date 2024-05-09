@@ -33,7 +33,7 @@
   - [α-diversity](#α-diversity)
   - [β-diversity](#β-diversity)
   - [Core microbiota](#core-microbiota)
-  - [Overall](#overall)
+- [Summary](#summary)
 
 ## Introduction
 
@@ -164,4 +164,4 @@ fit_data = Maaslin2(input_data     = counts,
 
 ### Core microbiota
 
-### Overall
+## Summary
