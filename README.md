@@ -112,12 +112,17 @@ All samples (both IonTorrent and BGI)  names were organised with this pattern: "
 Possible contamination filtering was performed on this step. <br>
 
 Self-written scripts utilizied:
-- [`run_kreport2mpa.sh`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/run_kreport2mpa.sh) - to use KrakenTools for ~800 files at once
-- [`find_line.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/find_line.py) - to find contaminants precisely
-- [`delete_lines.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/delete_lines.py) - to delete them
-- [`processing_script.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/processing_script.py) - to return sample_ids to files
-- [`convert2csv.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/convert2csv.py) - to convert `.txt` files to `.csv` files
-- [`filter_possible_contaminants.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/filter_possible_contaminants.py) - to filter contaminants based on the data criteria
+
+|Script|Purpose|
+|------|-------|
+|[`run_kreport2mpa.sh`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/run_kreport2mpa.sh)|to use KrakenTools for ~800 files at once|
+|[`find_line.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/find_line.py)|to find contaminants precisely|
+|[`delete_lines.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/delete_lines.py)|to delete them|
+|[`processing_script.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/processing_script.py)|to return sample_ids to files|
+|[`convert2csv.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/convert2csv.py)|to convert `.txt` files to `.csv` files|
+|[`filter_possible_contaminants.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/filter_possible_contaminants.py)|to filter contaminants based on the data criteria|
+
+_Table 1. Scripts used to parse `counts.csv` files_
 
 <details><summary>
 <b>Contamination filtering criterias</b>
@@ -141,7 +146,7 @@ In addition, the following taxa were weeded out of the data:
 
 ### Finding the differences in exogenous DNA composition between HIV- and HIV+ NIPT samples
 
-To find the association between clinical metadata and microbial meta-omics features `MaAslin2 v.X.X.` was used.
+To find the association between clinical metadata and microbial meta-omics features `MaAslin2 v.X.X.` was used.<br>
 See [`scripts/MaAsLin2.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/MaAsLin2.R) script for details.
 
 <details><summary>
@@ -177,13 +182,41 @@ _Figure 2. Main results overview._
 |-------|-----|------|-----|-----|------|
 |PIC1|PIC2|PIC3|PIC4|PIC5|PIC6|
 
-_Table 1. Counts distribution on every taxonomic level_
+_Table 2. Counts distribution on every taxonomic level_
 
 It is clearly can be seen that the the distribution graph is shifted to the right in all cases.
 
 ### Differential abundance
 
+MaAsLin2 results were visualized as volcano plot with [`Volcano_plot/volcano.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Volcano_plot/volcano.R) script.<br>
+
+[INSERT PICTURE]
+
+_Figure 3. Volcano plot with differential bacterial abundance._
+
+Reasons for volcano plot instead of heatmap:
+
+1. Reason 1
+2. Reason 2
+3. Reason 3
+
 ### Relative abundance
+
+Mean relative abundance barplots vere made with [`scripts/Bar_plot.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/Bar_plot.R) script. <br>
+
+[INSERT PICTURE]
+
+_Figure 4. Mean Relative Abundance from species to phylum level._
+
+<details><summary>
+<b>Clipped image from laboratory journal:</b>
+</summary><br> 
+
+```python
+# Usage
+!!!НАПИСАТЬ!!!
+```
+</details>
 
 ### α-diversity
 
