@@ -6,14 +6,14 @@
 # The shadow of HIV: searching for indirect signs of HIV infection in cell-free DNA samples
 
 **Authors**  
-- Ilia Popov
-- Daria Nekrasova
-- Dorzhi Badmadashiev
+- Ilia Popov <a href="https://orcid.org/0000-0001-7947-1654"><img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>
+- Daria Nekrasova <a href="https://orcid.org/0000-0002-0028-9727"><img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>
+- Dorzhi Badmadashiev <a href="https://orcid.org/0000-0002-3406-6353"><img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>
 
 
 **Supervisors**
-- Alisa Morshneva
-- Polina Kozyulina
+- Alisa Morshneva <a href="https://orcid.org/0000-0002-8545-6052"><img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>
+- Polina Kozyulina <a href="https://orcid.org/0000-0001-8520-3445"><img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>
 
 **THIS REPO IS CURRENTLY AT WORK**
 
