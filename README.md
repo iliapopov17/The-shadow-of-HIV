@@ -39,7 +39,6 @@
   - [β-diversity](#β-diversity)
   - [Core microbiota](#core-microbiota-1)
 - [Summary](#summary)
-- [References](#references)
 
 ## Introduction
 
@@ -335,8 +334,6 @@ _Table 4. Core microbiota for HIV+ and HIV- groups_
 |_Herbaspirillum huttiense_|HIV-related immunosuppression can lead to opportunistic infections, including infections by _Herbaspirillum_|[^12], [^13]|
 |_Ralstonia pickettii_|HIV-related immunosuppression can lead to infections by unusual pathogens like _Ralstonia pickettii_|[^7], [^8], [^9], [^14]|
 |_Microbacterium_ sp. Y-01|HIV can compromise the immune system, increasing susceptibility to infections by less common bacteria, including _Microbacterium_|[^14]|
-
-## References
 
 [^1]:	Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078–2079 (2009).
 [^2]:	Langmead, B. & Salzberg, S. L. Fast gapped-read alignment with Bowtie 2. Nat. Methods 9, 357–359 (2012).
