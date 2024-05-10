@@ -42,7 +42,15 @@
 
 ## Introduction
 
-[Написать сколько образцов было (IonTorrent и BGI / ВИЧ+ и ВИЧ-). Написать про экзотику данных. Написать, что часть работы была выполнена на сервере. Аналитическая часть работы описана в лабораторном журнале. Написать про среду для conda.]
+Overall we had:
+- 39 HIV+ samples (IonTorrent)
+- 754 HIV- samples (IonTorrent)
+- 54 HIV- samples (BGI)<br>
+
+Cell free DNA is quite an exotic data to analyze, especially in terms of microbiology, that is why all tresholds are not so strict.<br>
+First two steps of the study: "Unmapped reads extraction" & "Assigning taxonomic labels" were made on the server.<br>
+All further steps that included data analysis were performed locally.<br>
+To perform every step [`HIV_shadow`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/HIV_shadow.yml) conda envinroment was used
 
 ## Pipeline
 
@@ -124,7 +132,7 @@ Self-written scripts utilizied:
 |[`convert2csv.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/convert2csv.py)|to convert `.txt` files to `.csv` files|
 |[`filter_possible_contaminants.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/filter_possible_contaminants.py)|to filter contaminants based on the data criteria|
 
-_Table 1. Scripts used to parse `counts.csv` files_
+_Table 1. Scripts used to parse `counts.csv` files._
 
 <details><summary>
 <b>Contamination filtering criterias</b>
@@ -269,7 +277,7 @@ Counts distribution graphs were made with [`scripts/describe.py`](https://github
 |-------|-----|------|-----|-----|------|
 |<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_species.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_genus.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_family.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_order.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_class.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_phylum.png"/>|
 
-_Table 2. Counts distribution on every taxonomic level_
+_Table 2. Counts distribution on every taxonomic level._
 
 It is clearly can be seen that the the distribution graph is shifted to the right in all cases.
 
@@ -295,7 +303,7 @@ _Figure 4. Mean Relative Abundance from species to phylum level._
 |Chao1|N|N|<0.001|
 |Pileou|N|N|<0.001|
 
-_Table 3. α-diversity metrics_
+_Table 3. α-diversity metrics._
 
 ![alpha-div](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/alpha-div.png#gh-light-mode-only)
 ![alpha-div](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/alpha-div-dark.png#gh-dark-mode-only)
@@ -309,7 +317,7 @@ _Figure 5. α-diversity visualization._
 |Bray-Curtis similarity|<0.001|
 |Jaccard dissmilarity|<0.001|
 
-_Table 4. β-diversity comparison between HIV+ and HIV- groups_
+_Table 4. β-diversity comparison between HIV+ and HIV- groups._
 
 ![beta-div](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/beta-div.png#gh-light-mode-only)
 ![beta-div](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/beta-div-dark.png#gh-dark-mode-only)
@@ -322,7 +330,7 @@ _Figure 6. β-diversity visualization._
 |-------|-----|
 |<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/core_microbiota/hiv%2B-standart.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/core_microbiota/hiv--standart.png"/>|
 
-_Table 4. Core microbiota for HIV+ and HIV- groups_
+_Table 4. Core microbiota for HIV+ and HIV- groups._
 
 ## Summary
 
@@ -334,6 +342,8 @@ _Table 4. Core microbiota for HIV+ and HIV- groups_
 |_Herbaspirillum huttiense_|HIV-related immunosuppression can lead to opportunistic infections, including infections by _Herbaspirillum_|[^12], [^13]|
 |_Ralstonia pickettii_|HIV-related immunosuppression can lead to infections by unusual pathogens like _Ralstonia pickettii_|[^7], [^8], [^9], [^14]|
 |_Microbacterium_ sp. Y-01|HIV can compromise the immune system, increasing susceptibility to infections by less common bacteria, including _Microbacterium_|[^14]|
+
+_Table 5. The Shadow of HIV itself._
 
 [^1]:	Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078–2079 (2009).
 [^2]:	Langmead, B. & Salzberg, S. L. Fast gapped-read alignment with Bowtie 2. Nat. Methods 9, 357–359 (2012).
