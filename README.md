@@ -319,15 +319,11 @@ _Figure 6. β-diversity visualization._
 
 ### Core microbiota
 
-![core_plus](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/core_microbiota/hiv%2B.png#gh-light-mode-only)
-![core_plus](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/core_microbiota/hiv%2B-dark.png#gh-dark-mode-only)
+|HIV+|HIV-
+|-------|-----|
+|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/core_microbiota/hiv%2B-standart.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/core_microbiota/hiv--standart.png"/>|
 
-_Figure 7. Core microbiota graph for HIV+ group._
-
-![core_minus](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/core_microbiota/hiv-.png#gh-light-mode-only)
-![core_minus](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/core_microbiota/hiv--dark.png#gh-dark-mode-only)
-
-_Figure 8. Core microbiota graph for HIV- group._
+_Table 4. Core microbiota for HIV+ and HIV- groups_
 
 ## Summary
 
