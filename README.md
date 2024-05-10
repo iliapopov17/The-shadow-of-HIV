@@ -58,17 +58,17 @@ _Figure 1. The whole pipeline overview._
 
 #### IonTorrent samples
 
-IonTorrent samples were already mapped to the human genome and files were presented in `.bam` format. Unmapped reads were extracted using `samtools v.1.20.`<br>
+IonTorrent samples were already mapped to the human genome and files were presented in `.bam` format. Unmapped reads were extracted using `samtools v.1.20.`[^1]<br>
 See [`Snakefiles/Snakefile_IonTorrent`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Snakefiles/Snakefile_IonTorrent) file for details.
 
 #### BGI samples
 
-BGI samples were presented in raw `.fastq.gz` format. They were mapped to the Human Reference Genome (version X) using `bowtie2 v.2.5.3.` Then unmapped reads were also extracted usint `samtools v.1.20.`<br>
+BGI samples were presented in raw `.fastq.gz` format. They were mapped to the Human Reference Genome (version X) using `bowtie2 v.2.5.3.`[^2] Then unmapped reads were also extracted usint `samtools v.1.20.`[^1]<br>
 See [`Snakefiles/Snakefile_BGI`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Snakefiles/Snakefile_BGI) file for details.
 
 ### Assigning taxonomic labels
 
-Taxonomic identification was performed with `kraken2 v.2.1.3.` utilizing full PlusPF (77GB) database with 0.6 confidence threshold.
+Taxonomic identification was performed with `kraken2 v.2.1.3.`[^3] utilizing full PlusPF (77GB) database with 0.6 confidence threshold.
 
 <details><summary>
 <b>Clipped image from Snakefiles with kraken2 parameters:</b>
@@ -111,7 +111,7 @@ All samples (both IonTorrent and BGI)  names were organised with this pattern: "
 
 #### Counts
 
-6 `counts.csv` files (from _species_ to _phylum_ level) were parsed from kraken2 reports using `KrakenTools v.1.2.` <br>
+6 `counts.csv` files (from _species_ to _phylum_ level) were parsed from kraken2 reports using `KrakenTools v.1.2.`[^4] <br>
 Possible contamination filtering was performed on this step. <br>
 
 Self-written scripts utilizied:
@@ -151,7 +151,7 @@ In addition, the following taxa were weeded out of the data:
 
 #### Differential abundance
 
-To find the association between clinical metadata and microbial meta-omics features `MaAslin2 v.1.7.3.` was used.<br>
+To find the association between clinical metadata and microbial meta-omics features `MaAslin2 v.1.7.3.`[^5] was used.<br>
 See [`scripts/MaAsLin2.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/MaAsLin2.R) script for details.
 
 <details><summary>
@@ -328,3 +328,9 @@ _Table 4. Core microbiota for HIV+ and HIV- groups_
 ## Summary
 
 ## References
+
+[^1]:	Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078–2079 (2009).
+[^2]:	Langmead, B. & Salzberg, S. L. Fast gapped-read alignment with Bowtie 2. Nat. Methods 9, 357–359 (2012).
+[^3]:	Wood, D. E., Lu, J. & Langmead, B. Improved metagenomic analysis with Kraken 2. Genome Biol. 20, 257 (2019).
+[^4]:	Lu, J. et al. Metagenome analysis using the Kraken software suite. Nat. Protoc. 17, 2815–2839 (2022).
+[^5]:	Mallick, H. et al. Multivariable association discovery in population-scale meta-omics studies. PLOS Comput. Biol. 17, e1009442 (2021).
