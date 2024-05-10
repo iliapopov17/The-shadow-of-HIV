@@ -168,7 +168,7 @@ See [`scripts/MaAsLin2.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob
 ```r
 fit_data = Maaslin2(input_data     = counts, 
                     input_metadata = metadata, 
-                    min_prevalence = 0,
+                    min_prevalence = 0.01,
                     normalization  = "TSS",
                     output         = "MaAsLin2_results",
                     analysis_method = "LM",
