@@ -327,6 +327,15 @@ _Table 4. Core microbiota for HIV+ and HIV- groups_
 
 ## Summary
 
+|Taxon|Real world data|Reference|
+|-----|---------------|---------|
+|Bradyrhizobium sp. BTAi1| |[^6], [^7], [^8]|
+|Ralstonia insidiosa| |[^7], [^8], [^9]|
+|Stenotrophomonas maltophilia| |[^10], [^11]|
+|Herbaspirillum huttiense| |[^12], [^13]|
+|Ralstonia pickettii| |[^7], [^8], [^9], [^14]|
+|Microbacterium sp. Y-01| |[^14]|
+
 ## References
 
 [^1]:	Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078–2079 (2009).
@@ -334,3 +343,12 @@ _Table 4. Core microbiota for HIV+ and HIV- groups_
 [^3]:	Wood, D. E., Lu, J. & Langmead, B. Improved metagenomic analysis with Kraken 2. Genome Biol. 20, 257 (2019).
 [^4]:	Lu, J. et al. Metagenome analysis using the Kraken software suite. Nat. Protoc. 17, 2815–2839 (2022).
 [^5]:	Mallick, H. et al. Multivariable association discovery in population-scale meta-omics studies. PLOS Comput. Biol. 17, e1009442 (2021).
+[^6]:	Li, S. et al. Alteration in Oral Microbiome Among Men Who Have Sex With Men With Acute and Chronic HIV Infection on Antiretroviral Therapy. Front. Cell. Infect. Microbiol. 11, 695515 (2021).
+[^7]: Yang, T. et al. Comprehensive Analysis of Gut Microbiota and Fecal Bile Acid Profiles in Children With Biliary Atresia. Front. Cell. Infect. Microbiol. 12, 914247 (2022).
+[^8]:	Saxena, D. et al. Modulation of the orodigestive tract microbiome in HIV-infected patients. Oral Dis. 22 Suppl 1, 73–78 (2016).
+[^9]:	Lu, X. et al. Gut Microbiome Alterations in Men Who Have Sex with Men-a Preliminary Report. Curr. HIV Res. (2022) doi:10.2174/1570162X20666220908105918.
+[^10]:	Saeed, N. K., Farid, E. & Jamsheer, A. E. Prevalence of opportunistic infections in HIV-positive patients in Bahrain: a four-year review (2009-2013). J. Infect. Dev. Ctries. 9, 60–69 (2015).
+[^11]:	Brito, L. C. N. et al. Microbiologic profile of endodontic infections from HIV- and HIV+ patients using multiple-displacement amplification and checkerboard DNA-DNA hybridization. Oral Dis. 18, 558–567 (2012).
+[^12]:	Özen, S. et al. Catheter-related Infections in Pediatric Patients Due to a Rare Pathogen: Herbaspirillum huttiense. Pediatr. Infect. Dis. J. (2024) doi:10.1097/INF.0000000000004350.
+[^13]:	Ruiz de Villa, A., Alok, A., Oyetoran, A. E. & Fabara, S. P. Septic Shock and Bacteremia Secondary to Herbaspirillum huttiense: A Case Report and Review of Literature. Cureus 15, e36155 (2023).
+[^14]: Wang, J., Song, Y., Liu, S., Jang, X. & Zhang, L. Persistent bacteremia caused by Ralstonia pickettii and Microbacterium: a case report. BMC Infect. Dis. 24, 327 (2024).
