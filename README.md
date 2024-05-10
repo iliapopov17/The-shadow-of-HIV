@@ -15,8 +15,6 @@
 - Alisa Morshneva <a href="https://orcid.org/0000-0002-8545-6052"><img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>
 - Polina Kozyulina <a href="https://orcid.org/0000-0001-8520-3445"><img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>
 
-**THIS REPO IS CURRENTLY AT WORK**
-
 ## Table of contents
 
 - [Introduction](#introduction)
@@ -28,14 +26,18 @@
   - [Assigning taxonomic labels](#assigning-taxonomic-labels)
   - [Creating residual virus and microbiome profiles of two datasets](#creating-residual-virus-and-microbiome-profiles-of-two-datasets)
   - [Finding the differences in exogenous DNA composition between HIV- and HIV+ NIPT samples](#finding-the-differences-in-exogenous-dna-composition-between-hiv--and-hiv-nipt-samples)
+    - [Differential abundance](#differential-abundance)
+    - [Relative abundance](#relative-abundance)
+    - [Biodiversity](#biodiversity)
+    - [Core microbiota](#core-microbiota)
 - [Results](#results)
   - [Overview](#overview-1)
   - [Counts distribution](#counts-distribution)
-  - [Differential abundance](#differential-abundance)
-  - [Relative abundance](#relative-abundance)
+  - [Differential abundance](#differential-abundance-1)
+  - [Relative abundance](#relative-abundance-1)
   - [α-diversity](#α-diversity)
   - [β-diversity](#β-diversity)
-  - [Core microbiota](#core-microbiota)
+  - [Core microbiota](#core-microbiota-1)
 - [Summary](#summary)
 - [References](#references)
 
@@ -47,7 +49,8 @@
 
 ### Overview
 
-[INSERT PICTURE]
+![pipeline](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/pipeline.png#gh-light-mode-only)
+![pipeline](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/pipeline-dark.png#gh-dark-mode-only)
 
 _Figure 1. The whole pipeline overview._
 
@@ -146,6 +149,8 @@ In addition, the following taxa were weeded out of the data:
 
 ### Finding the differences in exogenous DNA composition between HIV- and HIV+ NIPT samples
 
+#### Differential abundance
+
 To find the association between clinical metadata and microbial meta-omics features `MaAslin2 v.X.X.` was used.<br>
 See [`scripts/MaAsLin2.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/MaAsLin2.R) script for details.
 
@@ -168,11 +173,81 @@ fit_data = Maaslin2(input_data     = counts,
 ```
 </details>
 
+MaAsLin2 results were visualized as volcano plot with [`Volcano_plot/volcano.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Volcano_plot/volcano.R) script.<br>
+
+Reasons for volcano plot instead of heatmap:
+
+1. Volcano plot allowed 2 metrics to be plotted at once: `log2fc` & `p-value`.
+2. We only have 2 groups: HIV+ and HIV-. Heatmap is useful when more groups are displayed. Volcano plot is perfect for 2 groups.
+3. Volcano plot is the classic way of displaying differential relative data.
+4. Aesthetic principles: MaAsLin2 found ~100 statistically significant taxa, the heatmap would be too high/wide (depending on configuration).
+
+#### Relative abundance
+
+Mean relative abundance barplots were visualised to determine the relative percentage of a particular taxon in samples from the HIV+ and HIV- groups
+Visualization was made with [`scripts/Bar_plot.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/Bar_plot.R) script. <br>
+
+<details><summary>
+<b>Clipped image from laboratory journal:</b>
+</summary><br> 
+
+```python
+# Usage
+# {path_to_script} {path_to_metadata} {path_to_counts_species} {path_to_counts_genus} {path_to_counts_family} {path_to_counts_order} {path_to_counts_class} {path_to_counts_phylum}
+! Rscript scripts/Bar_plot.R metadata.csv counts/counts_species_filtered.csv counts/counts_genus.csv counts/counts_family.csv counts/counts_class.csv counts/counts_order.csv counts/counts_phylum.csv
+```
+</details>
+
+#### Biodiversity
+
+**α-diversity**
+
+To measure mean species diversity in HIV+ and HIV- groups 3 α-diversity indices were estimated:
+- Shannon index
+- Chao1 index
+- Pileou index<br>
+
+To compare the values of each index between HIV+ and HIV- groups Mann-Whitney U Test was used.<br>
+See [`scripts/Alpha_div_calculations.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/Alpha_div_calculations.R) & [`scripts/Alpha.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/Alpha.R) scripts for details.
+
+**β-diversity**
+
+To measure the extent of differentiation (distribution) of species according to HIV status β-diversity in 2 metrics:
+1. Bray-Curtis similarity
+2. Jaccard dissimilarity<br>
+
+To compare the values of each metric between HIV+ and HIV- groups PERMANOVA was used.<br>
+See [`Beta_div/beta_diversity.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Beta_div/beta_diversity.R) script for details.
+
+<details><summary>
+<b>Rarefaction criterias:</b>
+</summary><br> 
+
+**Bray-Curtis similarity**
+```r
+bray <- avgdist(taxon_counts, dmethod="bray", sample=10)%>%
+  as.matrix()%>%
+  as_tibble(rownames = "sample_id")
+```
+
+**Jaccard dissimilarity**
+```r
+jaccard <- avgdist(taxon_counts, dmethod="jaccard", sample=10)%>%
+  as.matrix()%>%
+  as_tibble(rownames = "sample_id")
+```
+</details>
+
+#### Core microbiota
+
+The script [`scripts/core_microbiota_HIV.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/core_microbiome_HIV.py) was used to draw the core microbiota graphs.
+
 ## Results
 
 ### Overview
 
-[INSERT PICTURE]
+![main-results](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/main-results.png#gh-light-mode-only)
+![main-results](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/main-results-dark.png#gh-dark-mode-only)
 
 _Figure 2. Main results overview._
 
@@ -188,41 +263,48 @@ It is clearly can be seen that the the distribution graph is shifted to the righ
 
 ### Differential abundance
 
-MaAsLin2 results were visualized as volcano plot with [`Volcano_plot/volcano.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Volcano_plot/volcano.R) script.<br>
-
 [INSERT PICTURE]
 
 _Figure 3. Volcano plot with differential bacterial abundance._
 
-Reasons for volcano plot instead of heatmap:
-
-1. Reason 1
-2. Reason 2
-3. Reason 3
-
 ### Relative abundance
-
-Mean relative abundance barplots vere made with [`scripts/Bar_plot.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/Bar_plot.R) script. <br>
 
 [INSERT PICTURE]
 
 _Figure 4. Mean Relative Abundance from species to phylum level._
 
-<details><summary>
-<b>Clipped image from laboratory journal:</b>
-</summary><br> 
-
-```python
-# Usage
-!!!НАПИСАТЬ!!!
-```
-</details>
-
 ### α-diversity
+
+|Index|HIV-|HIV+|_p_-value|
+|-----|----|----|--------|
+|Shannon|N|N|N|
+|Chao1|N|N|N|
+|Pileou|N|N|N|
+
+_Table 3. α-diversity metrics_
+
+[INSERT PICTURE]
+
+_Figure 5. α-diversity visualization._
 
 ### β-diversity
 
+|Index|PERMANOVA _p_-value|
+|-----|----|
+|Bray-Curtis similarity|<0.001|
+|Jaccard dissmilarity|<0.001|
+
+_Table 4. β-diversity comparison between HIV+ and HIV- groups_
+
 ### Core microbiota
+
+[INSERT PICTURE]
+
+_Figure 6. Core microbiota graph for HIV+ group._
+
+[INSERT PICTURE]
+
+_Figure 7. Core microbiota graph for HIV- group._
 
 ## Summary
 
