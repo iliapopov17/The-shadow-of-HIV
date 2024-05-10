@@ -70,7 +70,7 @@ See [`Snakefiles/Snakefile_IonTorrent`](https://github.com/iliapopov17/The-shado
 
 #### BGI samples
 
-BGI samples were presented in raw `.fastq.gz` format. They were mapped to the Human Reference Genome (version X) using `bowtie2 v.2.5.3.`[^2] Then unmapped reads were also extracted usint `samtools v.1.20.`[^1]<br>
+BGI samples were presented in raw `.fastq.gz` format. They were mapped to the human genome (Human Release 19 (GRCh37.p13)) using `bowtie2 v.2.5.3.`[^2] Then unmapped reads were also extracted usint `samtools v.1.20.`[^1]<br>
 See [`Snakefiles/Snakefile_BGI`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Snakefiles/Snakefile_BGI) file for details.
 
 ### Assigning taxonomic labels
