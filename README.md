@@ -329,12 +329,12 @@ _Table 4. Core microbiota for HIV+ and HIV- groups_
 
 |Taxon|Real world data|Reference|
 |-----|---------------|---------|
-|_Bradyrhizobium_ sp. BTAi1| |[^6], [^7], [^8]|
-|_Ralstonia insidiosa_| |[^7], [^8], [^9]|
-|_Stenotrophomonas maltophilia_| |[^10], [^11]|
-|_Herbaspirillum huttiense_| |[^12], [^13]|
-|_Ralstonia pickettii_| |[^7], [^8], [^9], [^14]|
-|_Microbacterium_ sp. Y-01| |[^14]|
+|_Bradyrhizobium_ sp. BTAi1|HIV infection and subsequent antiretroviral therapy can lead to an enrichment of _Bradyrhizobium_ in the oral microbiome|[^6], [^7], [^8]|
+|_Ralstonia insidiosa_|HIV infection is associated with overgrowth of opportunistic pathogens including _Ralstonia_ in the gut|[^7], [^8], [^9]|
+|_Stenotrophomonas maltophilia_|HIV infection is associated with the occurrence of opportunistic infections including _Stenotrophomonas maltophilia_|[^10], [^11]|
+|_Herbaspirillum huttiense_|HIV-related immunosuppression can lead to opportunistic infections, including infections by _Herbaspirillum_|[^12], [^13]|
+|_Ralstonia pickettii_|HIV-related immunosuppression can lead to infections by unusual pathogens like _Ralstonia pickettii_|[^7], [^8], [^9], [^14]|
+|_Microbacterium_ sp. Y-01|HIV can compromise the immune system, increasing susceptibility to infections by less common bacteria, including _Microbacterium_|[^14]|
 
 ## References
 
