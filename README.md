@@ -329,12 +329,12 @@ _Table 4. Core microbiota for HIV+ and HIV- groups_
 
 |Taxon|Real world data|Reference|
 |-----|---------------|---------|
-|Bradyrhizobium sp. BTAi1| |[^6], [^7], [^8]|
-|Ralstonia insidiosa| |[^7], [^8], [^9]|
-|Stenotrophomonas maltophilia| |[^10], [^11]|
-|Herbaspirillum huttiense| |[^12], [^13]|
-|Ralstonia pickettii| |[^7], [^8], [^9], [^14]|
-|Microbacterium sp. Y-01| |[^14]|
+|_Bradyrhizobium_ sp. BTAi1| |[^6], [^7], [^8]|
+|_Ralstonia insidiosa_| |[^7], [^8], [^9]|
+|_Stenotrophomonas maltophilia_| |[^10], [^11]|
+|_Herbaspirillum huttiense_| |[^12], [^13]|
+|_Ralstonia pickettii_| |[^7], [^8], [^9], [^14]|
+|_Microbacterium_ sp. Y-01| |[^14]|
 
 ## References
 
