@@ -172,7 +172,7 @@ fit_data = Maaslin2(input_data     = counts,
                     normalization  = "TSS",
                     output         = "MaAsLin2_results",
                     analysis_method = "LM",
-                    max_significance = 0.2,
+                    max_significance = 0.05,
                     correction = "BH",
                     plot_heatmap = TRUE,
                     plot_scatter = TRUE,
@@ -187,7 +187,7 @@ Reasons for volcano plot instead of heatmap:
 1. Volcano plot allowed 2 metrics to be plotted at once: `log2fc` & `p-value`.
 2. We only have 2 groups: HIV+ and HIV-. Heatmap is useful when more groups are displayed. Volcano plot is perfect for 2 groups.
 3. Volcano plot is the classic way of displaying differential relative data.
-4. Aesthetic principles: MaAsLin2 found ~100 statistically significant taxa, the heatmap would be too high/wide (depending on configuration).
+4. Aesthetic principles: MaAsLin2 found ~70 statistically significant taxa, the heatmap would be too high/wide (depending on configuration).
 
 #### Relative abundance
 
