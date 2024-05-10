@@ -43,7 +43,7 @@
 
 ## Introduction
 
-[Написать сколько образцов было (IonTorrent и BGI / ВИЧ+ и ВИЧ-). Написать, какие ограничения исследования имеются - диагностика ВИЧ инфекции с помощью опросников. Написать про экзотику данных. Написать, что часть работы была выполнена на сервере. Аналитическая часть работы описана в лабораторном журнале. Написать про разные среды для conda.]
+[Написать сколько образцов было (IonTorrent и BGI / ВИЧ+ и ВИЧ-). Написать про экзотику данных. Написать, что часть работы была выполнена на сервере. Аналитическая часть работы описана в лабораторном журнале. Написать про среду для conda.]
 
 ## Pipeline
 
@@ -58,7 +58,7 @@ _Figure 1. The whole pipeline overview._
 
 #### IonTorrent samples
 
-IonTorrent samples were already in `.bam` format. Unmapped reads were extracted using `samtools v.X.X.`<br>
+IonTorrent samples were already mapped to the human genome and files were presented in `.bam` format. Unmapped reads were extracted using `samtools v.X.X.`<br>
 See [`Snakefiles/Snakefile_IonTorrent`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Snakefiles/Snakefile_IonTorrent) file for details.
 
 #### BGI samples
