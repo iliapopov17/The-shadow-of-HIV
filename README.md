@@ -290,11 +290,11 @@ _Figure 4. Mean Relative Abundance from species to phylum level._
 
 ### α-diversity
 
-|Index|HIV-|HIV+|_p_-value|
+|Index|HIV-|HIV+|M-W _p_-value|
 |-----|----|----|--------|
-|Shannon|N|N|N|
-|Chao1|N|N|N|
-|Pileou|N|N|N|
+|Shannon|N|N|<0.001|
+|Chao1|N|N|<0.001|
+|Pileou|N|N|<0.001|
 
 _Table 3. α-diversity metrics_
 
