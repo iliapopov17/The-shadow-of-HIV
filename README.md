@@ -253,9 +253,22 @@ _Figure 2. Main results overview._
 
 ### Counts distribution
 
+Counts distribution graphs were made with [`scripts/describe.py`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/describe.py) script
+
+<details><summary>
+<b>Clipped image from laboratory journal:</b>
+</summary><br> 
+  
+```
+# Usage
+# {path_to_script} {path_to_input_file} {taxonomic_level}
+%run scripts/describe.py "counts/counts_species_filtered.csv" Species
+```
+</details>
+
 |Species|Genus|Family|Order|Class|Family|
 |-------|-----|------|-----|-----|------|
-|PIC1|PIC2|PIC3|PIC4|PIC5|PIC6|
+|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_species.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_genus.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_family.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_order.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_class.png"/>|<img src="https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/counts_distribution/distr_phylum.png"/>|
 
 _Table 2. Counts distribution on every taxonomic level_
 
