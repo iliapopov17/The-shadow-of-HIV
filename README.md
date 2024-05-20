@@ -70,12 +70,12 @@ See [`Snakefiles/Snakefile_IonTorrent`](https://github.com/iliapopov17/The-shado
 
 #### BGI samples
 
-BGI samples were presented in raw `.fastq.gz` format. They were mapped to the human genome (Human Release 19 (GRCh37.p13)) using `bowtie2 v.2.5.3.`[^2] Then unmapped reads were also extracted usint `samtools v.1.20.`[^1]<br>
+BGI samples were presented in raw `.fastq.gz` format. They were mapped to the human genome (hg19, NCBI build 37[^2]) using `bowtie2 v.2.5.3.`[^3] Then unmapped reads were also extracted usint `samtools v.1.20.`[^1]<br>
 See [`Snakefiles/Snakefile_BGI`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Snakefiles/Snakefile_BGI) file for details.
 
 ### Assigning taxonomic labels
 
-Taxonomic identification was performed with `kraken2 v.2.1.3.`[^3] utilizing full PlusPF (77GB) database with 0.6 confidence threshold.
+Taxonomic identification was performed with `kraken2 v.2.1.3.`[^4] utilizing full PlusPF (77GB) database[^5] with 0.6 confidence threshold.
 
 <details><summary>
 <b>Clipped image from Snakefiles with kraken2 parameters:</b>
@@ -118,7 +118,7 @@ All samples (both IonTorrent and BGI)  names were organised with this pattern: "
 
 #### Counts
 
-6 `counts.csv` files (from _species_ to _phylum_ level) were parsed from kraken2 reports using `KrakenTools v.1.2.`[^4] <br>
+6 `counts.csv` files (from _species_ to _phylum_ level) were parsed from kraken2 reports using `KrakenTools v.1.2.`[^6] <br>
 Possible contamination filtering was performed on this step. <br>
 
 Self-written scripts utilizied:
@@ -158,7 +158,7 @@ In addition, the following taxa were weeded out of the data:
 
 #### Differential abundance
 
-To find the association between clinical metadata and microbial meta-omics features `MaAslin2 v.1.7.3.`[^5] was used.<br>
+To find the association between clinical metadata and microbial meta-omics features `MaAsLin2 v.1.7.3.`[^7] was used.<br>
 See [`scripts/MaAsLin2.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/MaAsLin2.R) script for details.
 
 <details><summary>
@@ -187,7 +187,7 @@ Reasons for volcano plot instead of heatmap:
 1. Volcano plot allowed 2 metrics to be plotted at once: `log2fc` & `p-value`.
 2. We only have 2 groups: HIV+ and HIV-. Heatmap is useful when more groups are displayed. Volcano plot is perfect for 2 groups.
 3. Volcano plot is the classic way of displaying differential relative data.
-4. Aesthetic principles: MaAsLin2 found ~70 statistically significant taxa, the heatmap would be too high/wide (depending on configuration).
+4. Aesthetic principles: MaAsLin2 found ~40 statistically significant taxa, the heatmap would be too high/wide (depending on configuration).
 
 #### Relative abundance
 
@@ -210,34 +210,34 @@ Visualization was made with [`scripts/Bar_plot.R`](https://github.com/iliapopov1
 **α-diversity**
 
 To measure mean species diversity in HIV+ and HIV- groups 3 α-diversity indices were estimated:
-- Shannon index
-- Chao1 index
-- Pielou index<br>
+- Shannon index[^8]
+- Chao1 index[^9]
+- Pielou index[^10]<br>
 
-To compare the values of each index between HIV+ and HIV- groups Mann-Whitney U Test was used.<br>
+To compare the values of each index between HIV+ and HIV- groups Mann-Whitney U Test[^11] was used.<br>
 See [`scripts/Alpha_div_calculations.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/Alpha_div_calculations.R) & [`scripts/Alpha.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/Alpha.R) scripts for details.
 
 **β-diversity**
 
 To measure the extent of differentiation (distribution) of species according to HIV status β-diversity in 2 metrics:
-1. Bray-Curtis similarity
-2. Jaccard dissimilarity<br>
+1. Bray-Curtis dissimilarity[^12]
+2. Jaccard similarity[^13]<br>
 
-To compare the values of each metric between HIV+ and HIV- groups PERMANOVA was used.<br>
+To compare the values of each metric between HIV+ and HIV- groups PERMANOVA[^14] was used.<br>
 See [`Beta_div/beta_diversity.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/Beta_div/beta_diversity.R) script for details.
 
 <details><summary>
 <b>Rarefaction criterias:</b>
 </summary><br> 
 
-**Bray-Curtis similarity**
+**Bray-Curtis dissimilarity**
 ```r
 bray <- avgdist(taxon_counts, dmethod="bray", sample=10)%>%
   as.matrix()%>%
   as_tibble(rownames = "sample_id")
 ```
 
-**Jaccard dissimilarity**
+**Jaccard similarity**
 ```r
 jaccard <- avgdist(taxon_counts, dmethod="jaccard", sample=10)%>%
   as.matrix()%>%
@@ -314,10 +314,10 @@ _Figure 5. α-diversity visualization._
 
 |Index|PERMANOVA _p_-value|
 |-----|----|
-|Bray-Curtis similarity|<0.001|
-|Jaccard dissmilarity|<0.001|
+|Bray-Curtis dissimilarity|<0.001|
+|Jaccard similarity|<0.001|
 
-_Table 4. β-diversity comparison between HIV+ and HIV- groups._
+_Table 4. β-diversity comparison between HIV+ and HIV- groups. A - Bray-Curtis dissimilarity. B - Jaccard similarity._
 
 ![beta-div](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/beta-div.png#gh-light-mode-only)
 ![beta-div](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/beta-div-dark.png#gh-dark-mode-only)
@@ -336,26 +336,35 @@ _Table 4. Core microbiota for HIV+ and HIV- groups._
 
 |Taxon|Real world data|Reference|
 |-----|---------------|---------|
-|_Bradyrhizobium_ sp. BTAi1|HIV infection and subsequent antiretroviral therapy can lead to an enrichment of _Bradyrhizobium_ in the oral microbiome|[^6], [^7], [^8]|
-|_Ralstonia insidiosa_|HIV infection is associated with overgrowth of opportunistic pathogens including _Ralstonia_ in the gut|[^7], [^8], [^9]|
-|_Stenotrophomonas maltophilia_|HIV infection is associated with the occurrence of opportunistic infections including _Stenotrophomonas maltophilia_|[^10], [^11]|
-|_Herbaspirillum huttiense_|HIV-related immunosuppression can lead to opportunistic infections, including infections by _Herbaspirillum_|[^12], [^13]|
-|_Ralstonia pickettii_|HIV-related immunosuppression can lead to infections by unusual pathogens like _Ralstonia pickettii_|[^7], [^8], [^9], [^14]|
-|_Microbacterium_ sp. Y-01|HIV can compromise the immune system, increasing susceptibility to infections by less common bacteria, including _Microbacterium_|[^14]|
+|_Bradyrhizobium_ sp. BTAi1|HIV infection and subsequent antiretroviral therapy can lead to an enrichment of _Bradyrhizobium_ in the oral microbiome|[^15], [^16], [^17]|
+|_Ralstonia insidiosa_|HIV infection is associated with overgrowth of opportunistic pathogens including _Ralstonia_ in the gut|[^16], [^17], [^18]|
+|_Stenotrophomonas maltophilia_|HIV infection is associated with the occurrence of opportunistic infections including _Stenotrophomonas maltophilia_|[^19], [^20]|
+|_Herbaspirillum huttiense_|HIV-related immunosuppression can lead to opportunistic infections, including infections by _Herbaspirillum_|[^21], [^22]|
+|_Ralstonia pickettii_|HIV-related immunosuppression can lead to infections by unusual pathogens like _Ralstonia pickettii_|[^16], [^17], [^18], [^23]|
+|_Microbacterium_ sp. Y-01|HIV can compromise the immune system, increasing susceptibility to infections by less common bacteria, including _Microbacterium_|[^23]|
 
 _Table 5. The Shadow of HIV itself._
 
 [^1]:	Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078–2079 (2009).
-[^2]:	Langmead, B. & Salzberg, S. L. Fast gapped-read alignment with Bowtie 2. Nat. Methods 9, 357–359 (2012).
-[^3]:	Wood, D. E., Lu, J. & Langmead, B. Improved metagenomic analysis with Kraken 2. Genome Biol. 20, 257 (2019).
-[^4]:	Lu, J. et al. Metagenome analysis using the Kraken software suite. Nat. Protoc. 17, 2815–2839 (2022).
-[^5]:	Mallick, H. et al. Multivariable association discovery in population-scale meta-omics studies. PLOS Comput. Biol. 17, e1009442 (2021).
-[^6]:	Li, S. et al. Alteration in Oral Microbiome Among Men Who Have Sex With Men With Acute and Chronic HIV Infection on Antiretroviral Therapy. Front. Cell. Infect. Microbiol. 11, 695515 (2021).
-[^7]: Yang, L. et al. HIV-induced immunosuppression is associated with colonization of the proximal gut by environmental bacteria. AIDS Lond. Engl. 30, 19–29 (2016).
-[^8]:	Saxena, D. et al. Modulation of the orodigestive tract microbiome in HIV-infected patients. Oral Dis. 22 Suppl 1, 73–78 (2016).
-[^9]:	Lu, X. et al. Gut Microbiome Alterations in Men Who Have Sex with Men-a Preliminary Report. Curr. HIV Res. (2022) doi:10.2174/1570162X20666220908105918.
-[^10]:	Saeed, N. K., Farid, E. & Jamsheer, A. E. Prevalence of opportunistic infections in HIV-positive patients in Bahrain: a four-year review (2009-2013). J. Infect. Dev. Ctries. 9, 60–69 (2015).
-[^11]:	Brito, L. C. N. et al. Microbiologic profile of endodontic infections from HIV- and HIV+ patients using multiple-displacement amplification and checkerboard DNA-DNA hybridization. Oral Dis. 18, 558–567 (2012).
-[^12]:	Özen, S. et al. Catheter-related Infections in Pediatric Patients Due to a Rare Pathogen: Herbaspirillum huttiense. Pediatr. Infect. Dis. J. (2024) doi:10.1097/INF.0000000000004350.
-[^13]:	Ruiz de Villa, A., Alok, A., Oyetoran, A. E. & Fabara, S. P. Septic Shock and Bacteremia Secondary to Herbaspirillum huttiense: A Case Report and Review of Literature. Cureus 15, e36155 (2023).
-[^14]: Wang, J., Song, Y., Liu, S., Jang, X. & Zhang, L. Persistent bacteremia caused by Ralstonia pickettii and Microbacterium: a case report. BMC Infect. Dis. 24, 327 (2024).
+[^2]:	Homo sapiens genome assembly GRCh37. NCBI https://www.ncbi.nlm.nih.gov/data-hub/assembly/GCF_000001405.13/.
+[^3]: Langmead, B. & Salzberg, S. L. Fast gapped-read alignment with Bowtie 2. Nat. Methods 9, 357–359 (2012).
+[^4]:	Wood, D. E., Lu, J. & Langmead, B. Improved metagenomic analysis with Kraken 2. Genome Biol. 20, 257 (2019).
+[^5]: PlusPF. https://genome-idx.s3.amazonaws.com/kraken/pluspf_20240112/inspect.txt.
+[^6]:	Lu, J. et al. Metagenome analysis using the Kraken software suite. Nat. Protoc. 17, 2815–2839 (2022).
+[^7]:	Mallick, H. et al. Multivariable association discovery in population-scale meta-omics studies. PLOS Comput. Biol. 17, e1009442 (2021).
+[^8]: Shannon, C. E. A mathematical theory of communication. Bell Syst. Tech. J. 27, 379–423 (1948).
+[^9]: Chao, A. & Bunge, J. Estimating the Number of Species in a Stochastic Abundance Model. Biometrics 58, 531–539 (2002).
+[^10]: Pielou, E. C. The measurement of diversity in different types of biological collections. J. Theor. Biol. 13, 131–144 (1966).
+[^11]: Mann, H. B. & Whitney, D. R. On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other. Ann. Math. Stat. 18, 50–60 (1947).
+[^12]: Bray, J. R. & Curtis, J. T. An Ordination of the Upland Forest Communities of Southern Wisconsin. Ecol. Monogr. 27, 325–349 (1957).
+[^13]: , P. Étude comparative de la distribution florale dans une portion des Alpes et du Jura. Bull. Société Vaudoise Sci. Nat. 37, 547 (1901).
+[^14]: Anderson, M. J. Permutational Multivariate Analysis of Variance (PERMANOVA). in Wiley StatsRef: Statistics Reference Online 1–15 (John Wiley & Sons, Ltd, 2017). doi:10.1002/9781118445112.stat07841.
+[^15]:	Li, S. et al. Alteration in Oral Microbiome Among Men Who Have Sex With Men With Acute and Chronic HIV Infection on Antiretroviral Therapy. Front. Cell. Infect. Microbiol. 11, 695515 (2021).
+[^16]: Yang, L. et al. HIV-induced immunosuppression is associated with colonization of the proximal gut by environmental bacteria. AIDS Lond. Engl. 30, 19–29 (2016).
+[^17]:	Saxena, D. et al. Modulation of the orodigestive tract microbiome in HIV-infected patients. Oral Dis. 22 Suppl 1, 73–78 (2016).
+[^18]:	Lu, X. et al. Gut Microbiome Alterations in Men Who Have Sex with Men-a Preliminary Report. Curr. HIV Res. (2022) doi:10.2174/1570162X20666220908105918.
+[^19]:	Saeed, N. K., Farid, E. & Jamsheer, A. E. Prevalence of opportunistic infections in HIV-positive patients in Bahrain: a four-year review (2009-2013). J. Infect. Dev. Ctries. 9, 60–69 (2015).
+[^20]:	Brito, L. C. N. et al. Microbiologic profile of endodontic infections from HIV- and HIV+ patients using multiple-displacement amplification and checkerboard DNA-DNA hybridization. Oral Dis. 18, 558–567 (2012).
+[^21]:	Özen, S. et al. Catheter-related Infections in Pediatric Patients Due to a Rare Pathogen: Herbaspirillum huttiense. Pediatr. Infect. Dis. J. (2024) doi:10.1097/INF.0000000000004350.
+[^22]:	Ruiz de Villa, A., Alok, A., Oyetoran, A. E. & Fabara, S. P. Septic Shock and Bacteremia Secondary to Herbaspirillum huttiense: A Case Report and Review of Literature. Cureus 15, e36155 (2023).
+[^23]: Wang, J., Song, Y., Liu, S., Jang, X. & Zhang, L. Persistent bacteremia caused by Ralstonia pickettii and Microbacterium: a case report. BMC Infect. Dis. 24, 327 (2024).
