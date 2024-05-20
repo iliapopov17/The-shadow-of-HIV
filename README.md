@@ -317,12 +317,12 @@ _Figure 5. α-diversity visualization._
 |Bray-Curtis dissimilarity|<0.001|
 |Jaccard similarity|<0.001|
 
-_Table 4. β-diversity comparison between HIV+ and HIV- groups. A - Bray-Curtis dissimilarity. B - Jaccard similarity._
+_Table 4. β-diversity comparison between HIV+ and HIV- groups._
 
 ![beta-div](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/beta-div.png#gh-light-mode-only)
 ![beta-div](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/imgs/beta-div-dark.png#gh-dark-mode-only)
 
-_Figure 6. β-diversity visualization._
+_Figure 6. β-diversity visualization. A - Bray-Curtis dissimilarity. B - Jaccard similarity._
 
 ### Core microbiota
 
