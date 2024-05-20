@@ -212,7 +212,7 @@ Visualization was made with [`scripts/Bar_plot.R`](https://github.com/iliapopov1
 To measure mean species diversity in HIV+ and HIV- groups 3 α-diversity indices were estimated:
 - Shannon index
 - Chao1 index
-- Pileou index<br>
+- Pielou index<br>
 
 To compare the values of each index between HIV+ and HIV- groups Mann-Whitney U Test was used.<br>
 See [`scripts/Alpha_div_calculations.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/Alpha_div_calculations.R) & [`scripts/Alpha.R`](https://github.com/iliapopov17/The-shadow-of-HIV/blob/main/scripts/Alpha.R) scripts for details.
@@ -301,7 +301,7 @@ _Figure 4. Mean Relative Abundance from species to phylum level._
 |-----|--------|
 |Shannon|<0.001|
 |Chao1|<0.001|
-|Pileou|<0.001|
+|Pielou|<0.001|
 
 _Table 3. α-diversity metrics._
 
